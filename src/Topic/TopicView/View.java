@@ -49,17 +49,17 @@ public class View {
     }
 
     public void showTopicInfo(Topic topic) {
-        for (int i = 0; i < 102; i++) {
+        for (int i = 0; i < 122; i++) {
             System.out.print("-");
         }
-        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Topic ID  ", ":", "" + topic.getId(), "|");
-        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Title : ", ":", "" + topic.getTitle(), "|");
-        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Username : ", ":", "" + topic.getUsername(), "|");
-        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Username : ", ":", "" + topic.getTag().toString(), "|");
-        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Content : ", ":", "" + topic.getContent(), "|");
-        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Votes : ", ":", "" + topic.getVotes(), "|");
+        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Topic ID  ", ":", " " + topic.getId(), "|");
+        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Title  ", ":", " " + topic.getTitle(), "|");
+        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Username  ", ":", " " + topic.getUsername(), "|");
+        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Tag  ", ":", " " + topic.getTag().toString(), "|");
+        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Content  ", ":", " " + topic.getContent(), "|");
+        System.out.printf("\n%s%-20s%s%-100s%s", "|", "Votes  ", ":", " " + topic.getVotes(), "|");
         System.out.println();
-        for (int i = 0; i < 102; i++) {
+        for (int i = 0; i < 122; i++) {
             System.out.print("-");
         }
         System.out.println();
@@ -71,5 +71,8 @@ public class View {
 
     public String inputString(String message) {
         return Service.inputString(message);
+    }
+    public void showMessage(String message){
+        System.out.println(message);
     }
 }

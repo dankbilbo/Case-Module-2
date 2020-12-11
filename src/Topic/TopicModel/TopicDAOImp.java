@@ -85,4 +85,7 @@ public class TopicDAOImp implements TopicDAO {
     public void writeTopicToFile() {
         FileWriterReader.writeTopicToFile(Path.TOPIC_INPUT_OUTPUT_FILE, topics);
     }
+    public void appendTopicToFile(Topic topic){
+        FileWriterReader.writeTopicToFile(Path.TOPIC_INPUT_OUTPUT_FILE,topic);
+    }
 }

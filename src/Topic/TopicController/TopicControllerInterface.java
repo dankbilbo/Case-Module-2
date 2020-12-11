@@ -1,6 +1,6 @@
 package Topic.TopicController;
 
-public interface ControllerInterface {
+public interface TopicControllerInterface {
     public void showMainMenu();
     public void viewAllTopics();
     public void addTopic();

@@ -4,13 +4,12 @@ package Const;
 public class Const {
     public class Errors {
         public static final String ERROR_IO = "Input/Output Error";
-        public static final String ERROR_IO_CLASS = "Class not found";
-        public static final String ERROR_NO_THREAD = "There is none Thread to show";
-        public static final String ERROR_INPUT_MISSMATCH = "Input missmatch process to go back to main menu";
+        public static final String ERROR_NO_TOPIC = "//Topic not found process to go back to main menu";
+        public static final String ERROR_INPUT_MISSMATCH = "//Input missmatch process to go back to main menu";
     }
 
     public final class Message {
-        public static final String MESSAGE_NO_THREAD = "There is no thread process to go back to main menu";
+        public static final String MESSAGE_NO_THREAD = "There is no topic process to go back to main menu";
         public static final String MESSAGE_ENTER_TITLE = "Enter Thread title";
         public static final String MESSAGE_CHOOSE_TAG = "Choose tag 1.NSFW - 2.SFW - 3.POLITIC - 4.NEWS - 5.SIENCE - 6.GAMING - Default.GENERAL";
         public static final String MESSAGE_CHOOSE_UPDATE = "Choose  1.Upvote - 2.Downvote - 3.Change title - 4.Edit content";

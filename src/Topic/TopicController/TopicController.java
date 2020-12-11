@@ -7,13 +7,15 @@ import Topic.TopicModel.TopicDAOImp;
 import Topic.TopicView.View;
 
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Controller implements ControllerInterface {
+public class TopicController implements TopicControllerInterface {
     TopicDAOImp topicDAOImp;
     View view;
 
-    public Controller() {
+    public TopicController() {
         topicDAOImp = new TopicDAOImp();
         view = new View();
     }
@@ -61,6 +63,7 @@ public class Controller implements ControllerInterface {
         topic.setId();
         topicDAOImp.addTopic(topic);
         view.viewTopics(topicDAOImp.getAllTopics());
+        topicDAOImp.appendTopicToFile(topic);
     }
 
     public String chooseFunctionsChoice() {
@@ -80,8 +83,18 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void searchTopicByID() {
-        int idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        int idSearch = -1;
+        try {
+            idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        } catch (NumberFormatException e) {
+            view.showMessage(Errors.ERROR_INPUT_MISSMATCH);
+            return;
+        }
         Topic topic = topicDAOImp.getTopic(idSearch);
+        if (topic == null) {
+            view.showMessage(Errors.ERROR_NO_TOPIC);
+            return;
+        }
         view.showTopicInfo(topic);
     }
 
@@ -105,15 +118,36 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void viewOneTopic() {
-        int idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        int idSearch = -1;
+        try {
+            idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        } catch (NumberFormatException e) {
+            view.showMessage(Errors.ERROR_INPUT_MISSMATCH);
+            return;
+        }
         Topic topic = topicDAOImp.getTopic(idSearch);
+        if (topic == null) {
+            view.showMessage(Errors.ERROR_NO_TOPIC);
+            return;
+        }
         view.showTopicInfo(topic);
     }
 
+
     @Override
     public void updateTopic() {
-        int idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        int idSearch = -1;
+        try {
+            idSearch = Integer.parseInt(view.inputString(Message.MESSAGE_SEARCH_ID));
+        } catch (NumberFormatException e) {
+            view.showMessage(Errors.ERROR_INPUT_MISSMATCH);
+            return;
+        }
         Topic topic = topicDAOImp.getTopic(idSearch);
+        if (topic == null) {
+            view.showMessage(Errors.ERROR_NO_TOPIC);
+            return;
+        }
         String choice = view.inputString(Message.MESSAGE_CHOOSE_UPDATE);
         switch (choice) {
             case "1":
@@ -135,7 +169,18 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void deleteTopic() {
-        int idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        int idSearch = -1;
+        try {
+            idSearch = view.inputNumber(Message.MESSAGE_SEARCH_ID);
+        } catch (NumberFormatException e) {
+            view.showMessage(Errors.ERROR_INPUT_MISSMATCH);
+            return;
+        }
+        Topic topic = topicDAOImp.getTopic(idSearch);
+        if (topic == null) {
+            view.showMessage(Errors.ERROR_NO_TOPIC);
+            return;
+        }
         topicDAOImp.deleteTopic(idSearch);
     }
 
@@ -155,7 +200,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void sortTopicsByTag() {
-        List<Topic> topics = topicDAOImp.getAllTopics();
+        List<Topic> topics = topicDAOImp.getAllTopics().stream().collect(Collectors.toList());
         topics.sort(new Comparator<Topic>() {
             @Override
             public int compare(Topic o1, Topic o2) {
@@ -168,6 +213,7 @@ public class Controller implements ControllerInterface {
                 }
             }
         });
+        view.viewTopics(topics);
     }
 
     public void writeListToFile() {

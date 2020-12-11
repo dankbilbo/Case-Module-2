@@ -1,13 +1,13 @@
 package User;
 
 import Const.Const;
-import Topic.TopicController.Controller;
+import Topic.TopicController.TopicController;
 
 import java.util.Scanner;
 
 public class Menu {
     static Scanner sc = new Scanner(System.in);
-    static Controller controller = new Controller();
+    static TopicController controller = new TopicController();
 
     public static void menu() {
         boolean run = true;
@@ -19,6 +19,7 @@ public class Menu {
                     break;
                 case "2":
                     controller.addTopic();
+
                     break;
                 case "3":
                     switch (controller.chooseSearchChoice()) {
@@ -73,6 +74,5 @@ public class Menu {
 
     public static void main(String[] args) {
         menu();
-
     }
 }

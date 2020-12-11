@@ -1,11 +1,14 @@
 package IO;
 
 import Const.Const.*;
+import Login.Model.Account;
 import Topic.TopicModel.Topic;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FileWriterReader {
     private static File file = null;
@@ -23,6 +26,19 @@ public class FileWriterReader {
                 fileWriter.append(Regex.NEWLINE);
                 fileWriter.flush();
             }
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println(Errors.ERROR_IO);
+        }
+    }
+
+    public static void writeTopicToFile(String path, Topic topic) {
+        file = new File(path);
+        try {
+            fileWriter = new FileWriter(file, true);
+            fileWriter.append(topic.toString());
+            fileWriter.append(Regex.NEWLINE);
+            fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
             System.out.println(Errors.ERROR_IO);
@@ -52,5 +68,51 @@ public class FileWriterReader {
             System.out.println(Errors.ERROR_IO);
         }
         return list;
+    }
+    public static void appendAccountToFile(String path, Account account){
+        file = new File(path);
+        try {
+            fileWriter = new FileWriter(file, true);
+            fileWriter.append(account.getNickname());
+            fileWriter.append(Regex.SEMICOLON);
+            fileWriter.append(account.getPassword());
+            fileWriter.append(Regex.SEMICOLON);
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println(Errors.ERROR_IO);
+        }
+    }
+    public static void writeHashMapAccountToFile(String path,HashMap<String,String> accounts){
+        try {
+            fileWriter = new FileWriter(file);
+            for (Map.Entry<String,String> entry : accounts.entrySet()){
+                fileWriter.append(entry.getKey());
+                fileWriter.append(Regex.SEMICOLON);
+                fileWriter.append(entry.getValue());
+            }
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println(Errors.ERROR_IO);
+        }
+
+    }
+    public static HashMap<String, String> readFileToHashMapAccount(String path) {
+        HashMap<String, String> accounts = new HashMap<>();
+        file = new File(path);
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] split = line.split(Regex.SEMICOLON);
+                accounts.put(split[0], split[1]);
+            }
+
+        } catch (IOException e) {
+            System.out.println(Errors.ERROR_IO);
+        }
+        return accounts;
     }
 }
