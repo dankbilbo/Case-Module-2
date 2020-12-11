@@ -49,6 +49,9 @@ public class FileWriterReader {
         List<Topic> list = new ArrayList<>();
         file = new File(path);
         try {
+            if (!file.exists()){
+                file.createNewFile();
+            }
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
             String line = null;
@@ -90,6 +93,7 @@ public class FileWriterReader {
                 fileWriter.append(entry.getKey());
                 fileWriter.append(Regex.SEMICOLON);
                 fileWriter.append(entry.getValue());
+                fileWriter.append(Regex.NEWLINE);
             }
             fileWriter.flush();
             fileWriter.close();

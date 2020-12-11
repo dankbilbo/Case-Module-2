@@ -1,6 +1,7 @@
 package User;
 
 import Const.Const;
+import Login.LoginController;
 import Topic.TopicController.TopicController;
 
 import java.util.Scanner;
@@ -8,7 +9,8 @@ import java.util.Scanner;
 public class Menu {
     static Scanner sc = new Scanner(System.in);
     static TopicController controller = new TopicController();
-
+    static LoginController loginController = new LoginController();
+    public static void login(){}
     public static void menu() {
         boolean run = true;
         while (run) {

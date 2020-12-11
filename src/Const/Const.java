@@ -14,7 +14,7 @@ public class Const {
         public static final String MESSAGE_CHOOSE_TAG = "Choose tag 1.NSFW - 2.SFW - 3.POLITIC - 4.NEWS - 5.SIENCE - 6.GAMING - Default.GENERAL";
         public static final String MESSAGE_CHOOSE_UPDATE = "Choose  1.Upvote - 2.Downvote - 3.Change title - 4.Edit content";
         public static final String MESSAGE_ENTER_CONTENT = "Enter Thread content";
-        public static final String MESSAGE_CHOOSE_SEARCH = "Search by 1.Search by Title - 2.Search by Tag - 3.Search by Username - Default.Search by ID";
+        public static final String MESSAGE_CHOOSE_SEARCH = "Search by 1.Search by Username - 2.Search by Title - 3.Search by Tag - Default.Search by ID";
         public static final String MESSAGE_SEARCH_ID = "Search by ID";
         public static final String MESSAGE_SEARCH_USERNAME = "Search by Username";
         public static final String MESSAGE_SEARCH_TAG = "Search by Tag";

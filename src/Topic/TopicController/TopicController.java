@@ -6,9 +6,7 @@ import Topic.TopicModel.Topic;
 import Topic.TopicModel.TopicDAOImp;
 import Topic.TopicView.View;
 
-import java.util.Comparator;
-import java.util.InputMismatchException;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TopicController implements TopicControllerInterface {
@@ -187,21 +185,27 @@ public class TopicController implements TopicControllerInterface {
     @Override
     public void sortTopicsByVotes() {
         List<Topic> topics = topicDAOImp.getAllTopics();
-        topics.sort(Comparator.comparing(Topic::getVotes));
-        view.viewTopics(topics);
+        List<Topic> newTopics = new ArrayList<>();
+        newTopics.addAll(topics);
+        newTopics.sort(Comparator.comparing(Topic::getVotes));
+        view.viewTopics(newTopics);
     }
 
     @Override
     public void sortTopicsByTitle() {
         List<Topic> topics = topicDAOImp.getAllTopics();
-        topics.sort(Comparator.comparing(Topic::getTitle));
-        view.viewTopics(topics);
+        List<Topic> newTopics = new ArrayList<>();
+        newTopics.addAll(topics);
+        newTopics.sort(Comparator.comparing(Topic::getTitle));
+        view.viewTopics(newTopics);
     }
 
     @Override
     public void sortTopicsByTag() {
-        List<Topic> topics = topicDAOImp.getAllTopics().stream().collect(Collectors.toList());
-        topics.sort(new Comparator<Topic>() {
+        List<Topic> topics = topicDAOImp.getAllTopics();
+        List<Topic> newTopics = new ArrayList<>();
+        newTopics.addAll(topics);
+        newTopics.sort(new Comparator<Topic>() {
             @Override
             public int compare(Topic o1, Topic o2) {
                 if (o1.getTag().toString().equals(o2.getTag().toString())) {
@@ -213,7 +217,7 @@ public class TopicController implements TopicControllerInterface {
                 }
             }
         });
-        view.viewTopics(topics);
+        view.viewTopics(newTopics);
     }
 
     public void writeListToFile() {

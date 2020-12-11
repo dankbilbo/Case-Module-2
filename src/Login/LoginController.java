@@ -10,10 +10,9 @@ import java.util.Scanner;
 public class LoginController {
     View view;
     HashMap<String,String> accounts;
-    Account account;
+    static Account account;
     Scanner sc = new Scanner(System.in);
     public LoginController(){
-
     }
     public void login() {
         System.out.println("Enter username");
