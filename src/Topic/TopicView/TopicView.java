@@ -6,7 +6,7 @@ import Topic.TopicModel.Topic;
 
 import java.util.List;
 
-public class View {
+public class TopicView {
     public void showMainMenu() {
         System.out.println("------MENU------");
         System.out.println("1.Show all topics");

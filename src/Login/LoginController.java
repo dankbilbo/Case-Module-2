@@ -1,14 +1,13 @@
 package Login;
 
 import Login.Model.Account;
-import Topic.TopicView.View;
+import Topic.TopicView.TopicView;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class LoginController {
-    View view;
+    TopicView view;
     HashMap<String,String> accounts;
     static Account account;
     Scanner sc = new Scanner(System.in);
